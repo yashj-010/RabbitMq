@@ -29,8 +29,7 @@ func main() {
 	}
 	defer ch.Close()
 
-	fmt.Println("Successfully connected to RabbitMQ!")
-
+	
 	err = pubsub.PublishJSON(
 		ch,
 		routing.ExchangePerilDirect,
@@ -42,7 +41,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	fmt.Println("Successfully connected to RabbitMQ!")
+	
 	// Wait for Ctrl+C
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt)
